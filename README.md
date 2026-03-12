@@ -18,3 +18,12 @@ Hybrid I/O when you pull vector data like roads from spatial database such as Po
 # Is spatial analysis occuring at this stage? 
 In this laboratory,  roads are being retrieved from PostGIS using gpd.read_postgis() while DEM being loaded from a raster file using rasterio.open()
 These two different steps are about getting the data into memory and no spatial computation yet
+
+# 3D Geometry Constructuin Milestone 
+Why densification is necessary 
+necessary it helps cities use land more efficiently,  reduce urban sprawl, support sustainable transportation and lower environmental impacts for the growing population.  
+Why CRS alignment must happen before sampling 
+It is simply aligned the spatial consistency particularly the coordinates
+What it means that geometry now contains Z values 
+The data is composed of 2dimension which is x and y,  z value is for 3D geometry composing of elevation, height and depth 
+
