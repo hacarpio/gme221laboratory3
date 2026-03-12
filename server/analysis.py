@@ -3,6 +3,7 @@ import rasterio
 import numpy as np
 from sqlalchemy import create_engine
 from shapely.geometry import LineString, MultiLineString
+import os 
 
 # 1. Database connection
 host, port, dbname = "localhost", "5432", "gme221laboratory3"
@@ -84,4 +85,14 @@ print("3D geometries created:", len(valid_3d), "/", len(roads))
 first = valid_3d.iloc[0]
 print("First 3D coord sample:", list(first.coords)[0])
 
+os.makedirs("output", exist_ok=True)
+# keep only ONE geometry column for export
+roads_3d_gdf = roads.dropna(subset=["geom_3d"]).copy()
+roads_3d_gdf = roads_3d_gdf.drop(columns=["geom"], errors="ignore") # drop the 
+
+# original geometry column to avoid confusion
+
+roads_3d_gdf = roads_3d_gdf.set_geometry("geom_3d")
+roads_3d_gdf.to_file("output/roads_3d.geojson", driver="GeoJSON")
+print("Saved: output/roads_3d.geojson")
 
